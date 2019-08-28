@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "shell_functions.h"
+/**
+ * getpath - get PATH variable from environ/envp
+ *
+ * Return: path
+ */
+char *getpath(char **env)
+{
+	char *p;
+	char *path = "PATH=";
+	char **env1;
+	/* char **envstart; */
+	/* char **envend; */
+
+	env1 = env;
+	/* envstart = env; */
+	/* envend = env; */
+	while (*env1)
+	{
+	  if ((p =_strstr(*env, path)))
+	    printf("PATH=? %s\n", p);
+	  env1++;
+	}
+	return (p + _strspn(*env, path));
+}

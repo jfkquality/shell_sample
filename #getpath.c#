@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "shell_functions.h"
+/**
+ * get_env_var - get PATH variable from environ/envp
+ * @env: environment (envp)
+ * @evar: env variable to get
+ *
+ * Return: char ptr to env var
+ */
+char *_get_env_var(char **env, char *evar)
+{
+	int len;
+	int i, j;
+	char *e_str;
+	/* char *vars[] = {"PATH=", "_=", "OLDPWD=", "HOME="}; */
+	(void) ac;
+	(void) av;
+
+	if (!*env)
+		return (0);
+	i = 0;
+	len = 0;
+	while (env[i])
+	{
+		e_str = env[i];
+		if (_strncmp(evar, e_str, _strlen(evar)) == 0)
+		{
+			len = _strspn(e_str, evar);
+		}
+		i++;
+	}
+	return (e_str);
+}
+

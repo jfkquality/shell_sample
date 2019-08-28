@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <unistd.h>
+
+/**
+ * main - fork example
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+  pid_t my_pid;
+  pid_t pid;
+
+  printf("Before fork\n");
+  pid = fork();
+  if (pid == -1)
+    {
+      perror("Error:");
+      return (1);
+    }
+  printf("After fork\n");
+  my_pid = getpid();
+  printf("My pid is %u\n", my_pid);
+  return (0);
+}
+julien@ubuntu:~/c/shell$ ./fork 
+Before fork
+After fork
+My pid is 4819
+julien@ubuntu:~/c/shell$ After fork
+My pid is 4820
+Note: there is no typo in the above example
+
+Using the return value of fork, it is possible to know if the current process is the father or the child: fork will return 0 to the child, and the PID of the child to the father.
+
+  julien@ubuntu:~/c/shell$ cat fork.c
+#include <stdio.h>
+#include <unistd.h>
+
+  /**
+   * main - fork example
+   *
+   * Return: Always 0.
+   */
+  int main(void)
+{
+	pid_t my_pid;
+	pid_t child_pid;
+
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror("Error:");
+		return (1);
+	}
+	my_pid = getpid();
+	printf("My pid is %u\n", my_pid);
+	if (child_pid == 0)
+	{
+		printf("(%u) Nooooooooo!\n", my_pid);
+	}
+	else
+	{
+		printf("(%u) %u, I am your father\n", my_pid, child_pid);
+	}
+	return (0);
+}
