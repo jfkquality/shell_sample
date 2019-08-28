@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <string.h>
 #include "shell_functions.h"
+#include "shell_strings.h"
+
 /**
  * getenv - get PATH variable from environ/envp
  * @env: environment (envp)

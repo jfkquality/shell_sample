@@ -1,4 +1,3 @@
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,6 +5,30 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include "shell_strings.h"
+
+/**
+ * getenv - get requested variable from environ/envp
+ * @env: environment (envp)
+ * @evar: env variable to get
+ *
+ * Return: char ptr to env var
+ */
+char *_getenv(char **env, char *evar)
+{
+	int i = 0;
+	
+	if (!_strchr(evar, '='))
+		_strcat(evar, "=");
+
+	while (env[i])
+	{
+		if (_strncmp(evar, env[i], _strlen(evar)) == 0)
+			return (env[i]);
+		i++;
+	}
+	exit (EXIT_FAILURE);
+}
 
 /**
  * getlen - get length of string.
@@ -32,10 +55,9 @@ int getlen(char *s)
  */
 int _printenv(char **env)
 {
-	unsigned int i;
+	unsigned int i = 0;
 
-	i = 0;
-	while (env[i] != NULL)
+	while (env[i])
 	{
 		printf("%s\n", env[i]);
 		i++;
@@ -64,6 +86,29 @@ void sigintHandler(int signum)
 	type_prompt();
 	signal(SIGINT, sigintHandler);
 }
+/* char *_getline(char **lineptr, ssize_t *n, int stream) */
+
+/**
+ * _getline - read line from stdin
+ * @buff: string buffer
+ *
+ * Return: count of characters read.
+ */
+ssize_t _getline(char *buff)
+{
+  int fd = STDIN_FILENO;
+  /* char *buff; */
+  int count = 1024;
+  ssize_t readcnt;
+
+  buff = malloc(count * sizeof(size_t));
+  readcnt = read(fd, buff, count);
+  buff[count] = '\0';
+
+  printf("readcnt %lu\n", readcnt);
+  return (readcnt);
+}
+
 /**
  * check_input - check input for ctrl-d, exit
  * @read: num of characters in line
@@ -104,7 +149,7 @@ char **make_arr(ssize_t read, char *line)
 	if (!token)
 	{
 		/* free(line); */
-	  return (0);
+		return (0);
 	}
 	/* printf("read %lu, len(line) %d\n", read, getlen(line)); */
 	arr = malloc(read * sizeof(char*));

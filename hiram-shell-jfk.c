@@ -16,7 +16,6 @@ void what_next_loop(void)
       free(token);
     }
 }
-int *_getline(int fd, char *buf, size_t count)
 char *_getline(char **lineptr, ssize_t *n, int stream)
 {
   char *str;
