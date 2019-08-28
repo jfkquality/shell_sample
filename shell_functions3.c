@@ -8,6 +8,26 @@
 #include "shell_strings.h"
 
 /**
+ * _env - print environment
+ * @env: envp
+ *
+ * Return: nothing
+ */
+void _env(char **env)
+{
+	char **env1;
+
+	env1 = env;
+
+	while (*env1)
+	{
+		write (STDOUT_FILENO, *env1, _strlen(*env1));
+		write (STDOUT_FILENO, "\n", 1);
+		env1++;
+	}
+	exit (EXIT_SUCCESS);
+}
+/**
  * getenv - get requested variable from environ/envp
  * @env: environment (envp)
  * @evar: env variable to get
@@ -29,7 +49,25 @@ char *_getenv(char **env, char *evar)
 	}
 	exit (EXIT_FAILURE);
 }
+/**
+ * _printenv - prints the environment
+ * @env: environment variable
+ *
+ * Return: Always 0.
+ */
+void _printenv(char **env)
+{
+	/* unsigned int i = 0; */
 
+	/* while (env[i]) */
+	/* { */
+	/* 	printf("%s\n", env[i]); */
+	/* 	i++; */
+	/* } */
+	/* return (0); */
+	_env(env);
+	exit (EXIT_SUCCESS);
+}
 /**
  * getlen - get length of string.
  * @s: string pointer
@@ -47,23 +85,6 @@ int getlen(char *s)
 
 /* read_file function */
 
-/**
- * _printenv - prints the environment
- * @env: environment variable
- *
- * Return: Always 0.
- */
-int _printenv(char **env)
-{
-	unsigned int i = 0;
-
-	while (env[i])
-	{
-		printf("%s\n", env[i]);
-		i++;
-	}
-	return (0);
-}
 /**
  * type_prompt - type ($) prompt
  *
