@@ -4,7 +4,7 @@
 #include <string.h>
 #include "shell_functions.h"
 /**
- * path - get PATH variable from environ/envp
+ * getenv - get PATH variable from environ/envp
  * @env: environment (envp)
  * @evar: env variable to get
  *

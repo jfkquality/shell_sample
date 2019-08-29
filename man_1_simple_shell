@@ -1,0 +1,17 @@
+.TH simple_shell(1) "August 28, 2019" "1.0" "simple_shell man page"
+.SH NAME
+.B simple_shell
+.SH SYNOPSIS
+.B simple_shell [command file[arguement]] 
+.SH DESCRIPTION
+.B simple_shell is a command line interpreter for the linux kernel and is ment to emulate the dash (shell). All standard and error outputs should be identical. This man page is written to provide examples on what our implementation can do. 
+The simple_shell can read commands from the terminal or a file, interpret them and execute them accordingly. You can pass commands to it interchangably via ineractive and non-interactive mode.
+.SH EXAMPLES
+.B non-interactive 
+.B interactive
+.SH SEE ALSO
+sh(1) or dash(1)
+.SH BUGS
+Still seraching for them.
+.SH AUTHOR
+Hiram C Velez, John F Knight
