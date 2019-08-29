@@ -42,7 +42,7 @@ int main(int ac, char **av, char **env)
 		_execute(line, input_args, env);
 	}
 	free(line);
-	for (i = 0; i < sizeof(input_args); i++)
+	for (i = 0; input_args; i++)
 		free(input_args[i]);
 	free(input_args);
 	exit(EXIT_SUCCESS);
