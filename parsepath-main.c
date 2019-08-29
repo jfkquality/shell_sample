@@ -1,6 +1,5 @@
 #include "shell_functions.h"
-/* #include "holberton.h" */
-#include <stdio.h>
+#include "shell_strings.h"
 
 int main(int ac, char **av, char **env)
 {
